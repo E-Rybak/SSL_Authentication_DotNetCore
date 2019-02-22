@@ -75,15 +75,16 @@ namespace HttpCoreAuthenticationAndAuthorization.Controllers
         {
             var user = _mapper.Map<User>(userDto);
 
-            if (!ModelState.IsValid)
-                return BadRequest();
+            //if (!ModelState.IsValid)
+            //    return BadRequest();
 
             _userService.Create(user, userDto.Password);
             return Ok();
         }
 
         [HttpGet]
-        [Authorize(Roles = "Captain")]
+        //[Authorize(Roles = "Captain")]
+        [AllowAnonymous]
         public IActionResult GetAll()
         {
             var users = _userService.GetAll();
